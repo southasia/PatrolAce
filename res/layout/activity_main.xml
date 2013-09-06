@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     android:weightSum="2" >
 
@@ -14,8 +16,8 @@
             android:id="@+id/iv_article"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:layout_weight="0.5"
-            
             android:background="@drawable/state_icon_article" >
         </ImageView>
 
@@ -23,8 +25,8 @@
             android:id="@+id/iv_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:layout_weight="0.5"
-            
             android:background="@drawable/state_icon_person" />
     </LinearLayout>
 
@@ -38,8 +40,8 @@
             android:id="@+id/iv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:layout_weight="0.5"
-            
             android:background="@drawable/state_icon_location" >
         </ImageView>
 
@@ -47,8 +49,8 @@
             android:id="@+id/iv_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:layout_weight="0.5"
-            
             android:background="@drawable/state_icon_message" />
     </LinearLayout>
 
