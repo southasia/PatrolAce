@@ -55,7 +55,7 @@ public class LoginActivity extends SherlockActivity {
 	
 	private SherlockActivity mActivity;
 	private SharedPreferences mSharedPreferences;
-	private final String KEY_IS_LOGGED_IN = "isLoggedIn";
+	protected static final String KEY_IS_LOGGED_IN = "isLoggedIn";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class LoginActivity extends SherlockActivity {
 		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
 		
 		if (mSharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false))
-			CommonUtil.switchActivity(mActivity, MainActivity.class, true);
+			CommonUtil.switchActivity(mActivity, HomeActivity.class, true);
 		
 		setContentView(R.layout.activity_login);
 		
@@ -246,8 +246,8 @@ public class LoginActivity extends SherlockActivity {
 			showProgress(false);
 
 			if (success) {
-				CommonUtil.switchActivity(mActivity, MainActivity.class, true);
-				mSharedPreferences.edit().putBoolean(KEY_IS_LOGGED_IN, true).commit();
+				CommonUtil.recordLogin(mActivity);
+				CommonUtil.switchActivity(mActivity, HomeActivity.class, true, R.anim.zoom_out, 0);
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

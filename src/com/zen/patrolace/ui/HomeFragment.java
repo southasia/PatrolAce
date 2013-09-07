@@ -1,42 +1,45 @@
 package com.zen.patrolace.ui;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.zen.patrolace.R;
 import com.zen.patrolace.util.CommonUtil;
 
-public class MainActivity extends SherlockActivity {
-
+public class HomeFragment extends SherlockFragment {
+	
+	SherlockFragmentActivity mActivity;
+	View mView;
+	
 	ImageView ivPerson;
 	ImageView ivArticle;
 	ImageView ivLocation;
 	ImageView ivMessage;
 
-	SherlockActivity mActivity;
-	SharedPreferences mSharedPreferences;
-
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+		mView = inflater.inflate(R.layout.activity_main, container, false); 
 		initialize();
 		findViewsById();
 		setListeners();
-
+		
+		return mView;
 	}
-
+	
 	private void initialize() {
-		mActivity = this;
-		mSharedPreferences = PreferenceManager
-				.getDefaultSharedPreferences(mActivity);
+		mActivity = getSherlockActivity();
 	}
 
 	private void setListeners() {
@@ -60,7 +63,9 @@ public class MainActivity extends SherlockActivity {
 
 				break;
 			case R.id.iv_location:
-				CommonUtil.switchActivity(mActivity, LocationActivity.class, false);
+//				CommonUtil.switchActivity(mActivity, LocationActivity.class, false);
+				
+				CommonUtil.switchFragment(mActivity, new LocationFragment());
 				break;
 			case R.id.iv_message:
 
@@ -71,19 +76,18 @@ public class MainActivity extends SherlockActivity {
 
 	private void findViewsById() {
 
-		ivPerson = (ImageView) findViewById(R.id.iv_person);
-		ivArticle = (ImageView) findViewById(R.id.iv_article);
-		ivLocation = (ImageView) findViewById(R.id.iv_location);
-		ivMessage = (ImageView) findViewById(R.id.iv_message);
+		ivPerson = (ImageView) mView.findViewById(R.id.iv_person);
+		ivArticle = (ImageView) mView.findViewById(R.id.iv_article);
+		ivLocation = (ImageView) mView.findViewById(R.id.iv_location);
+		ivMessage = (ImageView) mView.findViewById(R.id.iv_message);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getSupportMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		inflater.inflate(R.menu.main, menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
