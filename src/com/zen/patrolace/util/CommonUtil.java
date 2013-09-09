@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockMapFragment;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 import com.zen.patrolace.R;
 
 public class CommonUtil {
@@ -160,6 +164,17 @@ public class CommonUtil {
 		final AlertDialog alert = builder.create();
 		alert.show();
 
+	}
+
+	public static void moveHere(Context context, GoogleMap map) {
+		double[] coordinate = CommonUtil.getLocationCoordinate(context);
+
+		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
+				coordinate[0], coordinate[1]));
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+
+		map.moveCamera(center);
+		map.animateCamera(zoom);
 	}
 
 	public static double[] getLocationCoordinate(Context context) {
